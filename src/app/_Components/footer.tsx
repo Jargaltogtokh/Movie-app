@@ -7,7 +7,7 @@ export const Footer = () => {
         <div className="h-[200px] w-[100%] p-6">
           <div className="flex gap-5">
             <img src="film (1).png" className="w-[20px] h-[20px]" />{" "}
-            <p className="italic font-bold"> Movie Z</p>
+            <p className="italic font-bold mb-[10px]"> Movie Z</p>
           </div>
           <p> © 2024 Movie Z. All Rights Reserved.</p>
           <div className="grid grid-cols-2 gap-x-12 gap-y-2 mt-[20px]">
