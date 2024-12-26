@@ -10,7 +10,7 @@ export const Footer = () => {
             <p className="italic font-bold mb-[10px]"> Movie Z</p>
           </div>
           <p> © 2024 Movie Z. All Rights Reserved.</p>
-          <div className="grid grid-cols-2 gap-x-12 gap-y-2 mt-[20px]">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-2 mt-[20px] lg:grid-cols-3">
             <div> Contact information</div>
             <div> Follow us</div>
             <div className="flex">

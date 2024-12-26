@@ -11,7 +11,7 @@ export default async function Page({ params }: { params: any }) {
   console.log(movies);
 
   return (
-    <div className=" p-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg: grid-cols-5">
+    <div className="p-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
       {movies.map((movie) => (
         <div key={movie.id}>
           <img

@@ -1,5 +1,6 @@
 import { options } from "@/constants/api";
 import { Movie } from "@/constants/types";
+import Link from "next/link";
 
 type Props = {
   title: string;
@@ -18,15 +19,28 @@ export const Section = async ({ title, endpoint }: Props) => {
   return (
     <div className="p-3">
       <h1 className="font-semibold">{title}</h1>
+      <Link href={`/${endpoint}`}>
+        <p className="flex justify-end"> View all</p>
+      </Link>
+
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
         {movies.map((movie) => (
-          <div key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              className="rounded-md"
-            />
-            <div>{movie.title}</div>
+          <div key={movie.id} className="bg-zinc-800 rounded-lg">
+            <Link href={`/movie/${movie.id}`}>
+              <div className="cursor-pointer">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  className="rounded-t-lg"
+                />
+                <p>
+                  <span>⭐️ </span>
+                  {movie.vote_average.toFixed(1)}
+                  <span className="text-gray-400"> /10 </span>
+                </p>
+                <div>{movie.title}</div>
+              </div>
+            </Link>
           </div>
         ))}
       </div>
