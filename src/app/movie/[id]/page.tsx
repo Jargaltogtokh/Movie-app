@@ -14,10 +14,13 @@ export default async function Page({ params }: Props) {
 
   const data = await response.json();
 
+  console.log(data);
+
   return (
     <div>
       <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w500${data?.poster_path || ""}`}
+        alt={data?.title || "Movie Poster"}
         className="rounded-t-lg"
       />
       <p> {data.title}</p>

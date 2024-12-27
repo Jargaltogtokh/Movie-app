@@ -19,7 +19,7 @@ export const Section = async ({ title, endpoint }: Props) => {
   return (
     <div className="p-3">
       <h1 className="font-semibold">{title}</h1>
-      <Link href={`/${endpoint}`}>
+      <Link href={`/${endpoint}?language=en-US&page=1`}>
         <p className="flex justify-end"> View all</p>
       </Link>
 

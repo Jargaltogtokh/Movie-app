@@ -3,32 +3,36 @@
 import { options } from "@/constants/api";
 import { Movie } from "@/constants/types";
 import MovieCard from "../_Components/Moviecard";
-import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
+import { Pagination } from "../_Components/Pagination";
 
 export default function Page() {
   const params = useParams(); // Call useParams to get the parameters
   const category = params.category; // Extract 'category' from params
   const [movies, setMovies] = useState<Movie[]>([]);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`,
+          `https://api.themoviedb.org/3/movie/${params.category}?language=en-US&page=${page}`,
           options
         );
 
-        const resJson = await response.json();
-        const data: Movie[] = resJson.results;
-        setMovies(data);
+        const data = await response.json();
+        // const data: Movie[] = resJson.results;
+        setMovies(data.results.slice(0, 10));
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
     };
 
     fetchMovies();
-  }, [category]); // Re-run the effect when 'category' changes
+  }, [params]); // Re-run the effect when 'category' changes
 
   return (
     <div>
@@ -38,6 +42,8 @@ export default function Page() {
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
+
+      <Pagination />
     </div>
   );
 }
