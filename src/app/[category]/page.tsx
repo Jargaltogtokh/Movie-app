@@ -15,6 +15,8 @@ export default function Page() {
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
 
+  const [pageInfo, setPageInfo] = useState<PageInfo>({currentPage: 0, totalPages: 0});
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -25,7 +27,8 @@ export default function Page() {
 
         const data = await response.json();
         // const data: Movie[] = resJson.results;
-        setMovies(data.results.slice(0, 10));
+        setMovies(data.results.slice(0, 5));
+        setPageInfo({currentPage: Number(page), totalPages: data.total_pages})
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
@@ -43,7 +46,7 @@ export default function Page() {
         ))}
       </div>
 
-      <Pagination />
+      <PaginationControl pageInfo={pageInfo} />
     </div>
   );
 }

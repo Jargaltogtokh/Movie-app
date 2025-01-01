@@ -1,3 +1,4 @@
+import { Section } from "@/app/_Components/Section";
 import { options } from "@/constants/api";
 
 type Props = {
@@ -25,6 +26,12 @@ export default async function Page({ params }: Props) {
       />
       <p> {data.title}</p>
       <p> {data.overview}</p>
+     
+    
+      <Section 
+      title="More like this" 
+      moreLink={`${params.id}/recommendations`}
+      endpoint={`movie/${params.id}/recommendations`} />
     </div>
   );
 }

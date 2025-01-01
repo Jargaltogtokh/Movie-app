@@ -5,21 +5,24 @@ import Link from "next/link";
 type Props = {
   title: string;
   endpoint: string;
+  moreLink?: string;
 };
 
-export const Section = async ({ title, endpoint }: Props) => {
+export const Section = async ({ title, endpoint, moreLink }: Props) => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${endpoint}?language=en-US&page=1`,
+    `https://api.themoviedb.org/3/${endpoint}`,
     options
   );
   const resJson = await response.json();
   const movies: Movie[] = resJson?.results?.slice(0, 10);
+
+  const href = moreLink? moreLink: `/${endpoint}`;
   console.log(movies);
 
   return (
     <div className="p-3">
       <h1 className="font-semibold">{title}</h1>
-      <Link href={`/${endpoint}?language=en-US&page=1`}>
+      <Link href={href}>
         <p className="flex justify-end"> View all</p>
       </Link>
 
@@ -30,7 +33,7 @@ export const Section = async ({ title, endpoint }: Props) => {
               <div className="cursor-pointer">
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
+                  alt={movie?.title}
                   className="rounded-t-lg"
                 />
                 <p>
