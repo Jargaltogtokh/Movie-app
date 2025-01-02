@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { MdOutlineLocalMovies } from "react-icons/md";
 
 export const Footer = () => {
@@ -6,7 +7,7 @@ export const Footer = () => {
       <div className="h-[280px] w-[100%] bg-[#433BCA] mb-0 text-slate-50">
         <div className="h-[200px] w-[100%] p-6">
           <div className="flex gap-5">
-            <img src="film (1).png" className="w-[20px] h-[20px]" />{" "}
+            <Image width={10} height={10} src="/film.png" alt="" />
             <p className="italic font-bold mb-[10px]"> Movie Z</p>
           </div>
           <p> © 2024 Movie Z. All Rights Reserved.</p>

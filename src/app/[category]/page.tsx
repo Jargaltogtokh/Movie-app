@@ -1,11 +1,12 @@
 "use client";
 
 import { options } from "@/constants/api";
-import { Movie } from "@/constants/types";
+import { Movie, PageInfo } from "@/constants/types";
 import MovieCard from "../_Components/Moviecard";
 import { useEffect, useState } from "react";
 import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { Pagination } from "../_Components/Pagination";
+import { PaginationControls } from "../_Components/PaginationControl";
 
 export default function Page() {
   const params = useParams(); // Call useParams to get the parameters
@@ -15,7 +16,10 @@ export default function Page() {
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
 
-  const [pageInfo, setPageInfo] = useState<PageInfo>({currentPage: 0, totalPages: 0});
+  const [pageInfo, setPageInfo] = useState<PageInfo>({
+    currentPage: 0,
+    totalPages: 0,
+  });
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -28,7 +32,10 @@ export default function Page() {
         const data = await response.json();
         // const data: Movie[] = resJson.results;
         setMovies(data.results.slice(0, 5));
-        setPageInfo({currentPage: Number(page), totalPages: data.total_pages})
+        setPageInfo({
+          currentPage: Number(page),
+          totalPages: data.total_pages,
+        });
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
@@ -46,7 +53,7 @@ export default function Page() {
         ))}
       </div>
 
-      <PaginationControl pageInfo={pageInfo} />
+      <PaginationControls pageInfo={pageInfo} />
     </div>
   );
 }
