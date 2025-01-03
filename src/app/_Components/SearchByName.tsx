@@ -1,39 +1,54 @@
-"use client"
+"use client";
 
-import { options } from "@/constants/api"
-import { useEffect, useState } from "react"
+import { options } from "@/constants/api";
+import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export const SearchByName = () => {
-    const [search, setSearch] = useState("");
-    const [movie, setMovie] = useState(null);
-    const [isclient, setIsClient]= useState(false);
-    
-    const onChangePage = (event: any) => {
-        setSearch(event.target.value);
-      };
+  const [search, setSearch] = useState("");
+  const [movie, setMovie] = useState(null);
+  const [isClient, setIsClient] = useState(false);
 
-    const onPressEnter = (e:any) => {
-        if (e.code === "Enter") {setMovie(search);}
-    };
+  const onChangePage = (event: any) => {
+    setSearch(event.target.value);
+  };
 
-    useEffect (() => {setIsClient (true)}, []); 
+  const onPressEnter = (e: any) => {
+    if (e.code === "Enter") {
+      setMovie(search);
+    }
+  };
 
-    useEffect (()=> {fetch(`https://api.themoviedb.org/3/movie/`,
-            options
-          )
-          .then((response) => response.json())
-          .then((data) => {
-      console.log(data);
-    return (  
-        <div>
-        <input
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (movie) {
+      fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
+        options
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => console.error("Error fetching movie:", error));
+    }
+  }, [movie]);
+
+  return (
+    <div className="flex gap-2 align-middle border p-1 rounded-sm">
+      <Search />
+      <input
         type="text"
         value={search}
         onChange={onChangePage}
         onKeyDown={onPressEnter}
-        placeholder="Search for a movie"
-        />
-        {movie && <div> Searching for: {movie} </div>}
-        </div>
-        );
+        placeholder="Search..."
+        className="bg-black "
+      />
+      {movie && <div>Searching for: {movie}</div>}
+    </div>
+  );
 };

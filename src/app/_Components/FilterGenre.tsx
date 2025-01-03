@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/popover";
 import { options } from "@/constants/api";
 import { GenreType } from "@/constants/types";
-import { ChevronRight, ChevronRightIcon } from "lucide-react";
+import { ChevronDown, ChevronRight, ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GiClassicalKnowledge } from "react-icons/gi";
@@ -33,12 +33,19 @@ export const FilterGenre = () => {
   return (
     <Popover>
       <PopoverTrigger>
-        <div className="border rounded-lg p-4 w-{150px}"> Genre </div>
+        <div className="flex border p-1 rounded-sm pl-3 gap-1 pr-3">
+          <ChevronDown />
+          Genre
+        </div>
       </PopoverTrigger>
       <PopoverContent className="flex flex-wrap gap-1">
+        <div className="flex flex-col">
+          <p className="font-extrabold"> Genres</p>
+          <p> See lists of movies by genre</p>
+        </div>
         {genres.map((genre: GenreType) => (
           <Link
-            href={`/search?with_genres=${genre.id}`}
+            href={`/discover?with_genres=${genre.id}`}
             key={`genre-${genre.id}`}
           >
             <Badge variant="outline" key={`genre-${genre.id}`}>
