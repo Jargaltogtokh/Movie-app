@@ -8,11 +8,11 @@ export const SearchByName = () => {
     const [movie, setMovie] = useState(null);
     const [isclient, setIsClient]= useState(false);
     
-    const onChangePage = (event) => {
+    const onChangePage = (event: any) => {
         setSearch(event.target.value);
       };
 
-    const onPressEnter = (e) => {
+    const onPressEnter = (e:any) => {
         if (e.code === "Enter") {setMovie(search);}
     };
 
