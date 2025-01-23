@@ -1,8 +1,8 @@
 "use client";
 
 import { ChangeEvent, useState } from "react";
-import SearchResultPage from "../discover/page";
 import { SearchInput } from "./SearchInput";
+import { SearchResultList } from "./SearchResultList";
 
 export const SearchForMainPage = () => {
   const [searchValue, setSearchValue] = useState<string>("");

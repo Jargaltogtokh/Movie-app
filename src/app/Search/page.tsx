@@ -4,25 +4,35 @@ import { options } from "@/constants/api";
 import { Movie } from "@/constants/types";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Page from "../movie/[id]/page";
 
 export default function SearchResultPage() {
   const searchParams = useSearchParams();
-  const genres = searchParams.get("with_genres");
+  const query = searchParams.get("query");
 
   const [movies, setMovies] = useState<Movie[]>();
+  const [pageInfo, setPageInfo] = useState({
+    totalPages: 0,
+    currentPage: 0,
+  });
 
   useEffect(() => {
     const fetchMovies = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?with_genres=${genres}&language=en-US&page=1`,
+        `https://api.themoviedb.org/3/search/movie?query=${query}&language=en-US&page=${page}`,
         options
       );
       const data = await response.json();
-      setMovies(data.results?.slice(0, 5) || []);
+
+      setPageInfo({ currentPage: Number(Page), totalPages: data.total_pages });
+      setMovies(data.results?.slice(0, 5));
     };
     fetchMovies();
-  }, [genres]);
+  }, [query, Page]);
 
+  if (!movies) {
+    return <div> Loading ...</div>;
+  }
   return (
     <div className="p-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
       {movies?.map((movie) => (

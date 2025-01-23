@@ -74,18 +74,20 @@ export default async function Page({ params }: Props) {
         alt={movieData?.title || "Movie Poster"}
         className="rounded-t-lg"
       />
-      {movieData?.genres?.map((el: { id: number; name: string }) => (
-        <Badge>{el.name}</Badge>
-      ))}
+      <div className="mt-5 flex gap-2 flex-wrap">
+        {movieData?.genres?.map((el: { id: number; name: string }) => (
+          <Badge>{el.name}</Badge>
+        ))}
+      </div>
 
-      <p className="mb-5">{movieData.overview}</p>
-      <div className="flex gap-5 outline-dashed h-14 items-center">
+      <p className="mb-5 mt-5">{movieData.overview}</p>
+      <div className="flex gap-5 outline h-14 items-center">
         <p className="font-bold">
           <strong>Director </strong>{" "}
         </p>
         <p>{director ? director.name : "Not available"} </p>
       </div>
-      <div className="flex gap-7 outline-dashed h-14 items-center">
+      <div className="flex gap-7 outline h-14 items-center">
         <p className="font-bold">
           <strong> Writers </strong>{" "}
         </p>
@@ -93,7 +95,7 @@ export default async function Page({ params }: Props) {
           <p>{el.name}</p>
         ))}
       </div>
-      <div className="flex gap-12 outline-dashed h-14 items-center">
+      <div className="flex gap-12 outline h-14 items-center">
         <p className="font-bold">
           <strong> Stars </strong>
         </p>
@@ -110,7 +112,7 @@ export default async function Page({ params }: Props) {
 
       <Section
         title="More like this"
-        moreLink={`${params.id}/recommendations`}
+        moreLink={``}
         endpoint={`movie/${params.id}/recommendations`}
       />
     </div>

@@ -1,6 +1,3 @@
-import { AngryIcon } from "lucide-react";
-import Image from "next/image";
-import { Footer } from "./_Components/Footer";
 import { Section } from "./_Components/Section";
 
 export default async function Home() {

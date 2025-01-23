@@ -22,9 +22,12 @@ export const Section = async ({ title, endpoint, moreLink }: Props) => {
   return (
     <div className="p-3">
       <h1 className="font-semibold">{title}</h1>
-      <Link href={href}>
-        <p className="flex justify-end"> View all</p>
-      </Link>
+
+      {moreLink && (
+        <Link href={href}>
+          <p className="flex justify-end"> View all</p>
+        </Link>
+      )}
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
         {movies.map((movie) => (

@@ -3,6 +3,7 @@ import { FilterGenre } from "./FilterGenre";
 import { SearchByName } from "./SearchByName";
 import { Input } from "@/components/ui/input";
 import { Moon } from "lucide-react";
+import { SearchForMainPage } from "./SearchMainPage";
 
 export const Header = () => {
   return (
@@ -13,7 +14,7 @@ export const Header = () => {
       </div>
       <div className="flex justify-items-center items-center gap-2 ">
         <FilterGenre />
-        <SearchByName />
+        <SearchForMainPage />
         <div className="rounded-sm border p-1">
           <Moon />
         </div>

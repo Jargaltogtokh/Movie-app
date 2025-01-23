@@ -31,8 +31,7 @@ export default function RootLayout({
       >
         <Header />
         <main className="min-h-screen bg-background text-foreground">
-          {" "}
-          {children}{" "}
+          {children}
         </main>
         <>
           <Footer />
