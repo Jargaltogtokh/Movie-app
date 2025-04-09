@@ -3,22 +3,24 @@ import { Badge } from "@/components/ui/badge";
 import { options } from "@/constants/api";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export default async function Page({ params }: Props) {
+
+  const {id }= await params;
   // Fetch movie credits (cast and crew)
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}/credits`,
+    `https://api.themoviedb.org/3/movie/${id}/credits`,
     options
   );
   const creditsData = await response.json();
 
   // Fetch movie details (like title, release date, runtime, etc.)
   const responseMovie = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}`,
+    `https://api.themoviedb.org/3/movie/${id}`,
     options
   );
   const movieData = await responseMovie.json();
@@ -113,7 +115,7 @@ export default async function Page({ params }: Props) {
       <Section
         title="More like this"
         moreLink={``}
-        endpoint={`movie/${params.id}/recommendations`}
+        endpoint={`movie/${id}/recommendations`}
       />
     </div>
   );

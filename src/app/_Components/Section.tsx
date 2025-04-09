@@ -17,7 +17,6 @@ export const Section = async ({ title, endpoint, moreLink }: Props) => {
   const movies: Movie[] = resJson?.results?.slice(0, 10);
 
   const href = moreLink ? moreLink : `/${endpoint}`;
-  console.log(movies);
 
   return (
     <div className="p-3">

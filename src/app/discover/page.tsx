@@ -3,13 +3,14 @@ import MovieCard from "@/app/_Components/Moviecard";
 import { options } from "@/constants/api";
 import { Movie } from "@/constants/types";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
-export default function SearchResultPage() {
+// This is the inner component that uses the searchParams hook
+function DiscoverContent() {
   const searchParams = useSearchParams();
   const genres = searchParams.get("with_genres");
 
-  const [movies, setMovies] = useState<Movie[]>();
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -20,7 +21,10 @@ export default function SearchResultPage() {
       const data = await response.json();
       setMovies(data.results?.slice(0, 5) || []);
     };
-    fetchMovies();
+
+    if (genres) {
+      fetchMovies();
+    }
   }, [genres]);
 
   return (
@@ -29,5 +33,14 @@ export default function SearchResultPage() {
         <MovieCard movie={movie} key={`movie-${movie.id}`} />
       ))}
     </div>
+  );
+}
+
+// The main export wraps the inner component with Suspense
+export default function SearchResultPage() {
+  return (
+    <Suspense fallback={<div>Loading search results...</div>}>
+      <DiscoverContent />
+    </Suspense>
   );
 }

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export const SearchByName = () => {
   const [search, setSearch] = useState("");
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState('');
   const [isClient, setIsClient] = useState(false);
 
   const onChangePage = (event: any) => {
@@ -31,7 +31,7 @@ export const SearchByName = () => {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
         })
         .catch((error) => console.error("Error fetching movie:", error));
     }
