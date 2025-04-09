@@ -38,7 +38,41 @@ export default function RootLayout({
             {children}
           </Suspense>
         </main>
-        <Footers/>
+        <div className="h-[280px] w-full bg-[#433BCA] text-slate-50">
+          <div className="h-[200px] w-full p-6">
+            <div className="flex gap-5">
+              <img src="film.png" className="w-5 h-5" alt="Film logo" />
+              <p className="italic font-bold mb-2">Movie Z</p>
+            </div>
+            <p>© 2024 Movie Z. All Rights Reserved.</p>
+            <div className="grid grid-cols-2 gap-x-12 gap-y-2 mt-5 lg:grid-cols-3">
+              <div>Contact information</div>
+              <div>Follow us</div>
+              <div className="flex">
+                <img src="email.png" className="w-5 h-5" alt="Email icon" />
+                <div className="flex flex-col">
+                  <p>Email:</p>
+                  <p>support@movieZ.com</p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <p>Facebook</p>
+                <p>Instagram</p>
+              </div>
+              <div className="flex">
+                <img src="contact.png" className="w-5 h-5" alt="Phone icon" />
+                <div className="flex flex-col">
+                  <p>Phone:</p>
+                  <p>+976 (11) 123-4567</p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <p>Twitter</p>
+                <p>Youtube</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );
