@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { MdOutlineLocalMovies } from "react-icons/md";
 
-export const Footer = () => {
+export const Footerupdated = () => {
   return (
     <>
       <div className="h-[280px] w-[100%] bg-[#433BCA] mb-0 text-slate-50">

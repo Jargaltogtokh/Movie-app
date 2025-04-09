@@ -4,7 +4,8 @@ import "./globals.css";
 
 import { Header } from "./_Components/Header";
 import { Suspense } from "react";
-import { Footer } from "./_Components/Footer";
+import { Footerupdated } from "./_Components/Footer";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +38,7 @@ export default function RootLayout({
             {children}
           </Suspense>
         </main>
-        <Footer/>
+        <Footerupdated/>
       </body>
     </html>
   );
