@@ -4,8 +4,6 @@ import "./globals.css";
 
 import { Header } from "./_Components/Header";
 import { Suspense } from "react";
-import { Footers } from "./_Components/Footers";
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
