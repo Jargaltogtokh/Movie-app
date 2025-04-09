@@ -31,7 +31,7 @@ export default function Page() {
 
         const data = await response.json();
         // const data: Movie[] = resJson.results;
-        setMovies(data.results.slice(0, 5));
+        setMovies(data.results.slice(0, 25));
         setPageInfo({
           currentPage: Number(page),
           totalPages: data.total_pages,
