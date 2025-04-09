@@ -15,7 +15,6 @@ export default async function Page({ params }: Props) {
 
   const director = data.crew?.find((member: any) => member.job === "Director");
 
-  console.log(data);
 
   <p>
     <strong>Director:</strong> {director ? director.name : "Not available"}
