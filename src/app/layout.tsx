@@ -4,7 +4,7 @@ import "./globals.css";
 
 import { Header } from "./_Components/Header";
 import { Suspense } from "react";
-import { Footerupdated } from "./_Components/Footer";
+import { Footerupdated } from "./_Components/Footer-updated";
 
 
 const geistSans = Geist({
